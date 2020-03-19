@@ -6,7 +6,7 @@
                 <span>Your score : {{players.score}}</span>
             </div>
             <div class="logo">
-                <h2>Focus In</h2>
+                <img src="../assets//logo-text.png" alt="" class="logo-playgame">
             </div>
             <div class="score-user">
                 Another User Score: 10
@@ -14,7 +14,8 @@
         </div>
         <div class="play-board-body">
             <div class="play-image">
-                <img :src="question.imgUrl" alt="">
+                <!-- <img :src="{{question.imgUrl}}" alt=""> -->
+                <img :src="question.imgUrl" alt="" class="responsive">
             </div>
             <div class="play-board-button">
                 <div class="left">
@@ -23,7 +24,7 @@
                 </div>
                 <div class="right">
                 <button @click.prevent="getAnswer('B', question.id)" type="button" class="btn btn-dark" value="B">
-                     B
+                    B
                 </button>
                 </div>
             </div>
@@ -60,24 +61,25 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-top: 5vh;
 }
 
 .play-board-header{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 5px;
 }
 
-.play-board-header div{
-    background-color: aquamarine;
-    margin: 5px;
-    padding: 5px;
+.score-user{
+    margin: 15px 15px;
+    width: 10vw;
+    height: auto;
+    background-color: black;
+    color: whitesmoke;
 }
 
 .play-board-body{
-    height: 70%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -89,6 +91,17 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    align-items: center;
+}
+
+.responsive{
+  max-width: 40vw;
+  height: auto;
+}
+
+.logo-playgame{
+    width: 100%;
+    height: 100%;
 }
 
 .play-board-button{
