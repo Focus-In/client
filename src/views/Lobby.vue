@@ -1,9 +1,18 @@
 <template>
-  <div class="about">
-    <div v-if="showNotif">
-      {{notif_player_join}}
+  <div class="lobby d-flex flex-column align-items-center">
+    <div class="overflow-auto receptionis">
+      <div v-if="showNotif">
+        {{notif_player_join}}
+      </div>
+       <div>
+         {{players}}
+       </div>
     </div>
-    {{players}}
+    <div>
+       <router-link to="/playgame">
+        <button>Start</button>
+       </router-link>
+    </div>
   </div>
 </template>
 
@@ -44,5 +53,11 @@ export default {
 </script>
 
 <style scoped>
+
+.receptionis {
+  width: 30vw;
+  height: 20vh;
+  background-color: azure;
+}
 
 </style>

@@ -37,6 +37,14 @@ export default {
       this.$store.commit('SET_CHANGE_PLAYERS', players)
     })
   }
+  // beforeRouteEnter (to, from, next) {
+  //   // console.log(this.username)
+  //   if (this.username) {
+  //     next('/lobby')
+  //   } else {
+  //     next('/')
+  //   }
+  // }
 
 }
 </script>

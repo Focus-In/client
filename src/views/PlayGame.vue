@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="play-board">
+    <div v-for="(question, i) in questionList" :key="i" class="play-board">
         <div class="play-board-header">
             <div class="score-user">
                 Your Score: 10
@@ -14,16 +14,17 @@
         </div>
         <div class="play-board-body">
             <div class="play-image">
-                <img src="../assets/soal/soal3.svg" alt="">
+                <!-- <img :src="{{question.imgUrl}}" alt=""> -->
+                <img :src="question.imgUrl" alt="">
             </div>
             <div class="play-board-button">
                 <div class="left">
-                <button type="button" class="btn btn-dark"> A
+                <button @click.prevent="getAnswer('A', question.id)" type="button" class="btn btn-dark" value="A"> A
                 </button>
                 </div>
                 <div class="right">
-                <button type="button" class="btn btn-dark">
-                     b
+                <button @click.prevent="getAnswer('B', question.id)" type="button" class="btn btn-dark" value="B">
+                     B
                 </button>
                 </div>
             </div>
@@ -33,8 +34,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-
+  name: 'PlayBoard',
+  methods: {
+    ...mapActions(['checkAnswer']),
+    getAnswer (answer, questionNumber) {
+    //   console.log('get answer', answer, questionNumber)
+      this.checkAnswer({ answer, questionNumber })
+    }
+  },
+  computed: {
+    questionList () {
+      return this.$store.state.questionList
+    }
+  }
 }
 </script>
 
