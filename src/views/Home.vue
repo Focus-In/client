@@ -36,10 +36,6 @@ export default {
     socket.on('playerAdded', players => {
       this.$store.commit('SET_CHANGE_PLAYERS', players)
     })
-
-    // socket.on('notifJoined', playerJoin => {
-    //   this.$store.commit('SET_NOTIF_PLAYER_JOIN', playerJoin)
-    // })
   }
 
 }
