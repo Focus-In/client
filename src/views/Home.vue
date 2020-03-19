@@ -22,18 +22,24 @@ export default {
   methods: {
     inputUser () {
       this.$store.commit('SET_PLAYERS', this.username)
+      this.$store.commit('SET_PLAYER', this.username)
       this.$router.push('/lobby')
       socket.emit('addPlayer', {
-        players: this.$store.state.players
+        players: this.$store.state.players,
+        player: this.$store.state.player
       })
     }
   },
   created () {
-    const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
-    audio.play()
+    // const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
+    // audio.play()
     socket.on('playerAdded', players => {
       this.$store.commit('SET_CHANGE_PLAYERS', players)
     })
+
+    // socket.on('notifJoined', playerJoin => {
+    //   this.$store.commit('SET_NOTIF_PLAYER_JOIN', playerJoin)
+    // })
   }
 
 }
