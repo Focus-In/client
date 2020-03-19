@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    players: [],
+    players: {},
     questionList: [
       { id: 1, imgUrl: 'https://hackernoon.com/hn-images/1*GuuDpW8KefKQDcUW5NtgGA.png', answer: 'B' },
       { id: 2, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
@@ -21,10 +21,15 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_PLAYERS (state, payload) {
-      state.players.push(payload)
+      state.players.username = payload
+      state.players.score = 0
     },
     SET_CHANGE_PLAYERS (state, payload) {
       state.players = payload
+    },
+    SET_SCORE (state, payload) {
+      state.players.score += 10
+      console.log(state.players)
     }
   },
   actions: {
@@ -33,7 +38,8 @@ export default new Vuex.Store({
       for (let index = 0; index < questions.length; index++) {
         if (questions[index].id === questionNumber) {
           if (questions[index].answer === answer) {
-            console.log('you got a point')
+            console.log('you got a point', state.players.username, state.players.score)
+            commit('SET_SCORE')
           } else {
             console.log('you gotta need to be focus!')
           }

@@ -24,7 +24,7 @@ export default {
       this.$store.commit('SET_PLAYERS', this.username)
       this.$router.push('/lobby')
       socket.emit('addPlayer', {
-        players: this.$store.state.players
+        players: this.$store.state.players.username
       })
     }
   },
@@ -32,7 +32,7 @@ export default {
     const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
     audio.play()
     socket.on('playerAdded', players => {
-      this.$store.commit('SET_CHANGE_PLAYERS', players)
+      this.$store.commit('SET_CHANGE_PLAYERS', players.username)
     })
   }
   // beforeRouteEnter (to, from, next) {

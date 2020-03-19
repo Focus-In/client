@@ -18,7 +18,7 @@ export default {
   name: 'Loby',
   computed: {
     players () {
-      return this.$store.state.players
+      return this.$store.state.players.username
     }
   },
   created () {
