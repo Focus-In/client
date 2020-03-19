@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    players: []
   },
   mutations: {
+    SET_PLAYERS (state, payload) {
+      state.players.push(payload)
+    }
   },
   actions: {
   },
