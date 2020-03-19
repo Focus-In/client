@@ -16,7 +16,8 @@ export default {
   name: 'Home',
   data () {
     return {
-      username: ''
+      username: '',
+      socket: {}
     }
   },
   methods: {
