@@ -1,9 +1,9 @@
 <template>
 <div class="container">
-    <div v-for="(question, i) in questionList" :key="i" class="play-board">
+    <div v-for="(question) in questionList" :key="question.id" class="play-board">
         <div class="play-board-header">
             <div class="score-user">
-                Your Score: 10
+                <span>Your score : {{players.score}}</span>
             </div>
             <div class="logo">
                 <h2>Focus In</h2>
@@ -14,7 +14,6 @@
         </div>
         <div class="play-board-body">
             <div class="play-image">
-                <!-- <img :src="{{question.imgUrl}}" alt=""> -->
                 <img :src="question.imgUrl" alt="">
             </div>
             <div class="play-board-button">
@@ -47,6 +46,9 @@ export default {
   computed: {
     questionList () {
       return this.$store.state.questionList
+    },
+    players () {
+      return this.$store.state.players
     }
   }
 }

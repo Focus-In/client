@@ -29,7 +29,7 @@ export default new Vuex.Store({
     },
     SET_SCORE (state, payload) {
       state.players.score += 10
-      console.log(state.players)
+      // console.log(state.players)
     }
   },
   actions: {
