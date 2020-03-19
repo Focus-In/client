@@ -10,9 +10,13 @@ export default new Vuex.Store({
   mutations: {
     SET_PLAYERS (state, payload) {
       state.players.push(payload)
+    },
+    SET_CHANGE_PLAYERS (state, payload) {
+      state.players = payload
     }
   },
   actions: {
+
   },
   modules: {
   }

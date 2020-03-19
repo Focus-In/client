@@ -2,14 +2,15 @@
   <div class="home">
     <form @submit.prevent='inputUser'>
       <input type="text" class="form-control" v-model="username">
-      <button>Submit</button>
+      <br>
+      <button>Let's Go</button>
     </form>
   </div>
 </template>
 
 <script>
-// import io from 'socket.io-client'
-// const socket = io.connect('http://localhost:3000')
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
 
 export default {
   name: 'Home',
@@ -17,20 +18,21 @@ export default {
     return {
       username: ''
     }
+  },
+  methods: {
+    inputUser () {
+      this.$store.commit('SET_PLAYERS', this.username)
+      this.$router.push('/lobby')
+      socket.emit('addPlayer', {
+        players: this.$store.state.players
+      })
+    }
+  },
+  created () {
+    socket.on('playerAdded', players => {
+      this.$store.commit('SET_CHANGE_PLAYERS', players)
+    })
   }
-  // methods: {
-  //   inputUser () {
-  //     this.$store.commit('SET_PLAYERS', this.username)
-  //     socket.emit('addPlayer', {
-  //       username: this.username
-  //     })
-  //   }
-  // },
-  // created () {
-  //   socket.on('playerAdded', payload => {
-  //     this.$router.push('/lobby')
-  //   })
-  // }
 
 }
 </script>
