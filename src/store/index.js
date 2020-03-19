@@ -31,6 +31,10 @@ export default new Vuex.Store({
     SET_CHANGE_PLAYERS (state, payload) {
       state.players = payload
     },
+    SET_SCORE (state, payload) {
+      state.players.score += 10
+      // console.log(state.players)
+    },
     SET_NOTIF_PLAYER_JOIN (state, payload) {
       state.notif_player_join = payload
     }
@@ -41,7 +45,8 @@ export default new Vuex.Store({
       for (let index = 0; index < questions.length; index++) {
         if (questions[index].id === questionNumber) {
           if (questions[index].answer === answer) {
-            console.log('you got a point')
+            console.log('you got a point', state.players, state.players)
+            commit('SET_SCORE')
           } else {
             console.log('you gotta need to be focus!')
           }

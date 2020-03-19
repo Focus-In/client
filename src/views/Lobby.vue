@@ -4,9 +4,9 @@
       <div v-if="showNotif">
         {{notif_player_join}}
       </div>
-       <div>
+       <!-- <div>
          {{players}}
-       </div>
+       </div> -->
     </div>
     <div>
        <a @click="startOn">
