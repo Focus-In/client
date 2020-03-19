@@ -9,16 +9,16 @@ export default new Vuex.Store({
     players: [],
     notif_player_join: '',
     questionList: [
-      { id: 1, imgUrl: 'https://hackernoon.com/hn-images/1*GuuDpW8KefKQDcUW5NtgGA.png', answer: 'B' },
-      { id: 2, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
-      { id: 3, imgUrl: 'src/assets/soal/soal3.svg', answer: 'B' },
-      { id: 4, imgUrl: 'src/assets/soal/soal3.svg', answer: 'B' },
-      { id: 5, imgUrl: 'src/assets/soal/soal3.svg', answer: 'B' },
-      { id: 6, imgUrl: 'src/assets/soal/soal3.svg', answer: 'B' },
-      { id: 7, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
-      { id: 8, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
-      { id: 9, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
-      { id: 10, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' }
+      { id: 1, imgUrl: 'https://imgur.com/8LwmVol.png', answer: 'A' },
+      { id: 2, imgUrl: 'https://i.imgur.com/kGWNeCF.png', answer: 'B' },
+      { id: 3, imgUrl: 'https://i.imgur.com/cpXRIT0.png', answer: 'A' },
+      { id: 4, imgUrl: 'https://i.imgur.com/msydAto.png', answer: 'B' },
+      { id: 5, imgUrl: 'https://i.imgur.com/jNs7ezD.png', answer: 'A' },
+      { id: 6, imgUrl: 'https://i.imgur.com/wLgWVzY.png', answer: 'A' },
+      { id: 7, imgUrl: 'https://i.imgur.com/KeEsGiA.png', answer: 'A' },
+      { id: 8, imgUrl: 'https://i.imgur.com/uYRToKq.png', answer: 'A' },
+      { id: 9, imgUrl: 'https://i.imgur.com/JGlBVF6.png', answer: 'B' },
+      { id: 10, imgUrl: 'https://i.imgur.com/XdeCJZd.png', answer: 'A' }
     ]
   },
   mutations: {
