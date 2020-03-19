@@ -32,8 +32,7 @@ export default new Vuex.Store({
       state.players = payload
     },
     SET_SCORE (state, payload) {
-      state.players.score += 10
-      // console.log(state.players)
+      state.players[0].score += 10
     },
     SET_NOTIF_PLAYER_JOIN (state, payload) {
       state.notif_player_join = payload
@@ -45,8 +44,8 @@ export default new Vuex.Store({
       for (let index = 0; index < questions.length; index++) {
         if (questions[index].id === questionNumber) {
           if (questions[index].answer === answer) {
-            console.log('you got a point', state.players, state.players)
             commit('SET_SCORE')
+            console.log('you got a point', state.players[0].username, state.players[0].score)
           } else {
             console.log('you gotta need to be focus!')
           }
