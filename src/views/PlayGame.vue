@@ -15,7 +15,7 @@
         <div class="play-board-body">
             <div class="play-image">
                 <!-- <img :src="{{question.imgUrl}}" alt=""> -->
-                <img :src="question.imgUrl" alt="">
+                <img :src="question.imgUrl" alt="" class="responsive">
             </div>
             <div class="play-board-button">
                 <div class="left">
@@ -58,13 +58,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-top: 5vh;
 }
 
 .play-board-header{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 5px;
 }
 
@@ -75,7 +74,7 @@ export default {
 }
 
 .play-board-body{
-    height: 70%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,6 +86,13 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    align-items: center;
+}
+
+.responsive{
+    width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
 .play-board-button{
