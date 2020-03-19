@@ -1,7 +1,9 @@
 <template>
-  <div class="about">
-    <div class="overflow-auto">
-       {{players}}
+  <div class="lobby d-flex flex-column align-items-center">
+    <div class="overflow-auto receptionis">
+       <div>
+         {{players}}
+       </div>
     </div>
     <div>
        <router-link to="/playgame">
@@ -27,5 +29,11 @@ export default {
 </script>
 
 <style scoped>
+
+.receptionis {
+  width: 30vw;
+  height: 20vh;
+  background-color: azure;
+}
 
 </style>
