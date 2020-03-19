@@ -6,7 +6,7 @@
                 Your Score: 10
             </div>
             <div class="logo">
-                <h2>Focus In</h2>
+                <img src="../assets//logo-text.png" alt="" class="logo-playgame">
             </div>
             <div class="score-user">
                 Another User Score: 10
@@ -24,7 +24,7 @@
                 </div>
                 <div class="right">
                 <button @click.prevent="getAnswer('B', question.id)" type="button" class="btn btn-dark" value="B">
-                     B
+                    B
                 </button>
                 </div>
             </div>
@@ -63,14 +63,16 @@ export default {
 .play-board-header{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin: 5px;
 }
 
-.play-board-header div{
-    background-color: aquamarine;
-    margin: 5px;
-    padding: 5px;
+.score-user{
+    margin: 15px 15px;
+    width: 10vw;
+    height: auto;
+    background-color: black;
+    color: whitesmoke;
 }
 
 .play-board-body{
@@ -90,9 +92,13 @@ export default {
 }
 
 .responsive{
-    width: 100%;
-  max-width: 400px;
+  max-width: 40vw;
   height: auto;
+}
+
+.logo-playgame{
+    width: 100%;
+    height: 100%;
 }
 
 .play-board-button{
