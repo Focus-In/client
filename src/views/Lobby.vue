@@ -9,9 +9,9 @@
        </div>
     </div>
     <div>
-       <router-link to="/playgame">
+       <a @click="startOn">
         <button>Start</button>
-       </router-link>
+       </a>
     </div>
   </div>
 </template>
@@ -45,6 +45,9 @@ export default {
         players: this.$store.state.players,
         player: this.$store.state.player
       })
+    },
+    startOn () {
+      socket.emit('startOn')
     }
   },
   created () {
@@ -54,6 +57,9 @@ export default {
     socket.on('notifJoined', playerJoin => {
       this.notif_player_join = playerJoin
       this.notify()
+    })
+    socket.on('movePlayGamePage', () => {
+      this.$router.push('/playgame')
     })
   }
 }
