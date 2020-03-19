@@ -39,11 +39,18 @@ export default {
       setTimeout(() => {
         this.showNotif = false
       }, 3000)
+    },
+    emitSocket () {
+      socket.emit('addPlayer', {
+        players: this.$store.state.players,
+        player: this.$store.state.player
+      })
     }
   },
   created () {
     const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
     audio.play()
+    this.emitSocket()
     socket.on('notifJoined', playerJoin => {
       this.notif_player_join = playerJoin
       this.notify()
