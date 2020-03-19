@@ -1,6 +1,13 @@
 <template>
   <div class="about">
-    {{players}}
+    <div class="overflow-auto">
+       {{players}}
+    </div>
+    <div>
+       <router-link to="/playgame">
+        <button>Start</button>
+       </router-link>
+    </div>
   </div>
 </template>
 
