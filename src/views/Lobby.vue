@@ -1,5 +1,20 @@
 <template>
   <div class="about">
-    <h1>Lobby</h1>
+    {{players}}
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Loby',
+  computed: {
+    players () {
+      return this.$store.state.players
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

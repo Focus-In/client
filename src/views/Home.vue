@@ -1,17 +1,16 @@
 <template>
   <div class="home">
-    <form @submit.prevent='inputUser' class="form-group">
-      <div class="container">
-         <input type="text" class="form-control" v-model="username">
-         <button type="submit">Submit</button>
-      </div>
+    <form @submit.prevent='inputUser'>
+      <input type="text" class="form-control" v-model="username">
+      <br>
+      <button>Let's Go</button>
     </form>
   </div>
 </template>
 
 <script>
 import io from 'socket.io-client'
-// const socket = io.connect('http://localhost:3000')
+const socket = io.connect('http://localhost:3000')
 
 export default {
   name: 'Home',
@@ -24,19 +23,17 @@ export default {
   methods: {
     inputUser () {
       this.$store.commit('SET_PLAYERS', this.username)
-      this.socket.emit('addPlayer', {
-        username: this.username
+      this.$router.push('/lobby')
+      socket.emit('addPlayer', {
+        players: this.$store.state.players
       })
     }
   },
   created () {
-    this.socket = io.connect('http://localhost:3000')
     const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
     audio.play()
-  },
-  mounted () {
-    this.socket.on('playerAdded', payload => {
-      this.$router.push('/lobby')
+    socket.on('playerAdded', players => {
+      this.$store.commit('SET_CHANGE_PLAYERS', players)
     })
   }
 
