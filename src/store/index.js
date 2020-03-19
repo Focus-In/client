@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    player: '',
     players: [],
+    notif_player_join: '',
     questionList: [
       { id: 1, imgUrl: 'https://hackernoon.com/hn-images/1*GuuDpW8KefKQDcUW5NtgGA.png', answer: 'B' },
       { id: 2, imgUrl: 'src/assets/soal/soal3.svg', answer: 'A' },
@@ -20,11 +22,17 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    SET_PLAYER (state, payload) {
+      state.player = payload
+    },
     SET_PLAYERS (state, payload) {
-      state.players.push(payload)
+      state.players.push({ username: payload, score: 0 })
     },
     SET_CHANGE_PLAYERS (state, payload) {
       state.players = payload
+    },
+    SET_NOTIF_PLAYER_JOIN (state, payload) {
+      state.notif_player_join = payload
     }
   },
   actions: {
