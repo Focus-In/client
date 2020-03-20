@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="box-lobby">
-    <div class="receptionis">
+    <div class="receptionis rounded-lg">
        <div v-for="(player, index) in players" :key="index" class="box-player">
          <img src="../assets/user.png" alt="">
          {{players[index].username}}
@@ -85,6 +85,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  align-items: center;
 }
 
 .box-lobby{
@@ -94,7 +95,7 @@ export default {
 }
 
 .receptionis {
-  width: 30vw;
+  width: 100%;
   background-color: #17A2B8;
   display: flex;
   justify-content: center;
