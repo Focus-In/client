@@ -46,25 +46,25 @@ export default {
   data () {
     return {
       score_musuh: 0,
-      username_musuh: '',
-      indexQuestion: 0
+      username_musuh: ''
     }
   },
   methods: {
     ...mapActions(['checkAnswer']),
     getAnswer (answer, questionNumber) {
       console.log('total soal', this.questionList.length, this.indexQuestion)
-      if (this.indexQuestion < this.questionList.length) {
-        this.indexQuestion++
-      }
-      if (this.indexQuestion === this.questionList.length) {
+      if (this.indexQuestion === this.questionList.length - 1) {
         console.log('pindah ke finish')
+        this.$router.push('/Winner')
       }
 
       this.checkAnswer({ answer, questionNumber })
     }
   },
   computed: {
+    indexQuestion () {
+      return this.$store.state.indexQuestion
+    },
     questionList () {
       return this.$store.state.questionList
     },
