@@ -8,14 +8,14 @@
                 <div class="winner-result">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Your Score is : {{players[playerOn.id - 1].score}}</h3>
-                            <!-- <h3>Your Score is : {{playerHighScore.score}}</h3> -->
+                            <!-- <h3>Your Score is : {{players[playerOn.id - 1].score}}</h3> -->
+                            <h3>Your Score is : {{playerHighScore.score}}</h3>
                         </div>
                         <div class="result">
                             <div class="player-winner">
                             <img src="../assets/user.png" alt="">
-                            <p>{{playerOn.username}}</p>
-                            <!-- <p>{{playerHighScore.username}}</p> -->
+                            <!-- <p>{{playerOn.username}}</p> -->
+                            <p>{{playerHighScore.username}}</p>
                             </div>
                         </div>
                     </div>
