@@ -20,9 +20,13 @@ export default new Vuex.Store({
       { id: 8, imgUrl: 'https://i.imgur.com/uYRToKq.png', answer: 'A' },
       { id: 9, imgUrl: 'https://i.imgur.com/JGlBVF6.png', answer: 'B' },
       { id: 10, imgUrl: 'https://i.imgur.com/XdeCJZd.png', answer: 'A' }
-    ]
+    ],
+    indexQuestion: 0
   },
   mutations: {
+    SET_INDEX_QUESTION (state) {
+      state.indexQuestion++
+    },
     SET_PLAYER (state, payload) {
       state.player = payload
     },
@@ -37,7 +41,11 @@ export default new Vuex.Store({
       state.players = payload
     },
     SET_SCORE (state, payload) {
-      state.players[payload.index].score += 10
+      if (payload.status) {
+        state.players[payload.index].score += 10
+      } else {
+        state.players[payload.index].score -= 3
+      }
     },
     SET_NOTIF_PLAYER_JOIN (state, payload) {
       state.notif_player_join = payload
@@ -53,6 +61,7 @@ export default new Vuex.Store({
         if (questions[index].id === questionNumber) {
           if (questions[index].answer === answer) {
             commit('SET_SCORE', { index: state.player_on.id - 1, status: true })
+            commit('SET_INDEX_QUESTION')
             // console.log('you got a point', state.players[0].username, state.players[0].score)
             console.log('you got a point', state.players[localStorage.id - 1].username, state.players[localStorage.id - 1].score)
           } else {

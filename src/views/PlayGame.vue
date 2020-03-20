@@ -40,19 +40,11 @@
 import { mapActions } from 'vuex'
 export default {
   name: 'PlayBoard',
-  data () {
-    return {
-      indexQuestion: 0
-    }
-  },
   methods: {
     ...mapActions(['checkAnswer']),
     getAnswer (answer, questionNumber) {
       console.log('total soal', this.questionList.length, this.indexQuestion)
-      if (this.indexQuestion < this.questionList.length) {
-        this.indexQuestion++
-      }
-      if (this.indexQuestion === this.questionList.length) {
+      if (this.indexQuestion === this.questionList.length - 1) {
         console.log('pindah ke finish')
       }
 
@@ -60,6 +52,9 @@ export default {
     }
   },
   computed: {
+    indexQuestion () {
+      return this.$store.state.indexQuestion
+    },
     questionList () {
       return this.$store.state.questionList
     },
