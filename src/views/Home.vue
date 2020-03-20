@@ -1,13 +1,23 @@
 <template>
 <div class="container">
-  <div class="home container">
+  <lottie-player
+    v-if="loading"
+    src="https://assets1.lottiefiles.com/private_files/lf30_eAstu1.json"
+    background="transparent"
+    speed="1"
+    style="width: 300px; height: 300px;"
+    loop
+    autoplay >
+  </lottie-player>
+
+  <div v-if="!loading" class="home container">
     <div class="form-lobby">
       <img src="../assets/logo-text.png" alt="">
       <p>play and test your FOCUS together with your friends</p>
       <form @submit.prevent='inputUser'>
       <input type="text" class="form-control" v-model="username" placeholder="Your Name">
       <br>
-      <button type="submit" class="btn btn-info">Let's Go</button>
+      <button @click.prevent="startLoad" type="submit" class="btn btn-info">Let's Go</button>
     </form>
     </div>
     <div class="image-lobby">
@@ -25,11 +35,20 @@ export default {
   name: 'Home',
   data () {
     return {
-      username: ''
+      username: '',
+      loading: false
     }
   },
   methods: {
+    startLoad () {
+      console.log('munculah')
+      this.loading = true
+      setTimeout(() => {
+        this.inputUser()
+      }, 3000)
+    },
     inputUser () {
+      this.loading = false
       this.$store.commit('SET_PLAYERS', this.username)
       this.$store.commit('SET_PLAYER', this.username)
       this.$router.push('/lobby')
@@ -54,7 +73,6 @@ export default {
   //     next('/')
   //   }
   // }
-
 }
 </script>
 

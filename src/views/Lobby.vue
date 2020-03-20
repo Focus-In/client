@@ -1,24 +1,35 @@
 <template>
   <div class="lobby">
-    <div class="lobby-header">
-    <img src="../assets/logo-text.png" alt="">
-    <h2>Waiting Room</h2>
-    <div v-if="showNotif">
-        {{notif_player_join}}
+    <lottie-player
+      v-if="loading"
+      src="https://assets1.lottiefiles.com/private_files/lf30_eAstu1.json"
+      background="transparent"
+      speed="1"
+      style="width: 300px; height: 300px;"
+      loop
+      autoplay >
+    </lottie-player>
+    <div v-if="!loading">
+      <div class="lobby-header">
+      <img src="../assets/logo-text.png" alt="">
+      <h2>Waiting Room</h2>
+      <div v-if="showNotif">
+          {{notif_player_join}}
+        </div>
       </div>
-    </div>
-    <div class="box-lobby">
-    <div class="receptionis rounded-lg">
-       <div v-for="(player, index) in players" :key="index" class="box-player">
-         <img src="../assets/user.png" alt="">
-         {{players[index].username}}
-       </div>
-    </div>
-    </div>
-    <div>
-       <a @click="startOn">
-        <button type="button" class="btn btn-info">Play Now</button>
-       </a>
+      <div class="box-lobby">
+      <div class="receptionis rounded-lg">
+        <div v-for="(player, index) in players" :key="index" class="box-player">
+          <img src="../assets/user.png" alt="">
+          {{players[index].username}}
+        </div>
+      </div>
+      </div>
+      <div>
+        <a @click="startOn">
+          <button type="button" class="btn btn-info">Play Now</button>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +43,8 @@ export default {
   data () {
     return {
       notif_player_join: '',
-      showNotif: false
+      showNotif: false,
+      loading: false
     }
   },
   computed: {
@@ -54,7 +66,11 @@ export default {
       })
     },
     startOn () {
-      socket.emit('startOn')
+      this.loading = true
+      setTimeout(() => {
+        socket.emit('startOn')
+        this.loading = false
+      }, 3000)
     },
     fetchOnePlayer (id) {
       const par = this.players
