@@ -51,6 +51,11 @@ export default {
     players () {
       return this.$store.state.players
     }
+  },
+  created () {
+    console.log(localStorage.id)
+    console.log(localStorage.username)
+    console.log(this.$store.state.player_on)
   }
 }
 </script>

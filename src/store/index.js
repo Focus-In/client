@@ -8,6 +8,7 @@ export default new Vuex.Store({
     player: '',
     players: [],
     notif_player_join: '',
+    player_on: '',
     questionList: [
       { id: 1, imgUrl: 'https://imgur.com/8LwmVol.png', answer: 'A' },
       { id: 2, imgUrl: 'https://i.imgur.com/kGWNeCF.png', answer: 'B' },
@@ -26,7 +27,11 @@ export default new Vuex.Store({
       state.player = payload
     },
     SET_PLAYERS (state, payload) {
-      state.players.push({ username: payload, score: 0 })
+      const id = state.players.length + 1
+      localStorage.id = id
+      localStorage.username = payload
+      localStorage.score = 0
+      state.players.push({ id: id, username: payload, score: 0 })
     },
     SET_CHANGE_PLAYERS (state, payload) {
       state.players = payload
@@ -36,6 +41,9 @@ export default new Vuex.Store({
     },
     SET_NOTIF_PLAYER_JOIN (state, payload) {
       state.notif_player_join = payload
+    },
+    SET_PLAYER_ON (state, payload) {
+      state.player_on = payload
     }
   },
   actions: {
