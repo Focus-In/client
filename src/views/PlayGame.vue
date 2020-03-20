@@ -1,15 +1,18 @@
 <template>
 <div class="container">
+    <div>
+        Hallo {{playerOn.username}}
+    </div>
     <div v-for="(question) in questionList" :key="question.id" class="play-board">
         <div class="play-board-header">
             <div class="score-user">
-                <span>Your score : {{players[0].score}}</span>
+                <span>Your score : {{players[playerOn.id - 1].score}}</span>
             </div>
             <div class="logo">
                 <img src="../assets//logo-text.png" alt="" class="logo-playgame">
             </div>
             <div class="score-user">
-                Another User Score: 10
+                Another User Score: 0
             </div>
         </div>
         <div class="play-board-body">
@@ -50,6 +53,9 @@ export default {
     },
     players () {
       return this.$store.state.players
+    },
+    playerOn () {
+      return this.$store.state.player_on
     }
   },
   created () {
