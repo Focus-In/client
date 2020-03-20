@@ -8,17 +8,19 @@
                 <div class="winner-result">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Your Score is : {{players[playerOn.id - 1].score}}</h3>
+                            <!-- <h3>Your Score is : {{players[playerOn.id - 1].score}}</h3> -->
+                            <h3>Your Score is : {{playerHighScore.score}}</h3>
                         </div>
                         <div class="result">
                             <div class="player-winner">
                             <img src="../assets/user.png" alt="">
-                            <p>{{playerOn.username}}</p>
+                            <!-- <p>{{playerOn.username}}</p> -->
+                            <p>{{playerHighScore.username}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="footer-winner">
-                        <router-link class="btn btn-info" to="/">Back to home</router-link>
+                        <a @click="deletePlayers" class="btn btn-info" to="/">Back to home</a>
                     </div>
                 </div>
             </div>
@@ -26,6 +28,10 @@
     </div>
 </template>
 <script>
+import io from 'socket.io-client'
+// import router from '../router'
+const socket = io.connect('http://localhost:3000')
+
 export default {
   name: 'Winner',
   computed: {
@@ -34,6 +40,25 @@ export default {
     },
     playerOn () {
       return this.$store.state.player_on
+    },
+    playerHighScore () {
+      return this.$store.state.playerHighScore
+    }
+  },
+  methods: {
+    deletePlayers () {
+      socket.emit('deletePlayers')
+      this.$router.push('/')
+    }
+  },
+  created () {
+    socket.on('deletePlayersNih', () => {
+      this.$store.commit('SET_CHANGE_PLAYERS', [])
+    })
+  },
+  watch: {
+    playerHighScore (val) {
+      this.playerHighScore = val
     }
   }
 }

@@ -70,9 +70,21 @@ export default {
       console.log('total soal', this.questionList.length, this.indexQuestion)
       if (this.indexQuestion === this.questionList.length - 1) {
         console.log('pindah ke finish')
+        // router.push('/Winner')
+        // ini modif ipul
+        this.$store.commit('SET_PLAYERS_FINISH', 1)
+        console.log(this.$store.state.playersFinish, this.players.length - 1, '>>>>>>>>>>')
+
         this.loading = true
         setTimeout(() => {
-          router.push('/Winner')
+        //   router.push('/Winner')
+          if (this.$store.state.playersFinish === this.players.length - 1) {
+            const arr1 = this.players.map(el => el.score)
+            const highScore = Math.max(...arr1)
+            console.log(highScore)
+            const playerWithHighScore = this.players.find(player => player.score === highScore)
+            socket.emit('winner', playerWithHighScore)
+          }
         }, 3000)
       }
 
@@ -97,6 +109,11 @@ export default {
     socket.on('updateScoreNih', payload => {
       this.score_musuh = payload.score
       this.username_musuh = payload.username
+    })
+    socket.on('winnerNih', payload => {
+      console.log(payload, '>>>>>>>SCORE TRETINGGI')
+      this.$store.commit('SET_PLAYER_HIGH_SCORE', payload)
+      router.push('/Winner')
     })
   },
   watch: {
