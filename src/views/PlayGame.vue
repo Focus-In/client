@@ -38,6 +38,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import router from '../router'
 import io from 'socket.io-client'
 const socket = io.connect('http://localhost:3000')
 
@@ -55,7 +56,7 @@ export default {
       console.log('total soal', this.questionList.length, this.indexQuestion)
       if (this.indexQuestion === this.questionList.length - 1) {
         console.log('pindah ke finish')
-        this.$router.push('/Winner')
+        router.push('/Winner')
       }
 
       this.checkAnswer({ answer, questionNumber })
@@ -76,9 +77,9 @@ export default {
     }
   },
   created () {
-    console.log(localStorage.id)
-    console.log(localStorage.username)
-    console.log(this.$store.state.player_on)
+    // console.log(localStorage.id)
+    // console.log(localStorage.username)
+    // console.log(this.$store.state.player_on)
     socket.on('updateScoreNih', payload => {
       this.score_musuh = payload.score
       this.username_musuh = payload.username

@@ -8,12 +8,12 @@
                 <div class="winner-result">
                     <div class="card">
                         <div class="card-header">
-                            <h3>The Winner Is</h3>
+                            <h3>Your Score is : {{players[playerOn.id - 1].score}}</h3>
                         </div>
                         <div class="result">
                             <div class="player-winner">
                             <img src="../assets/user.png" alt="">
-                            <p>Nama Pemenang</p>
+                            <p>{{playerOn.username}}</p>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,15 @@
 </template>
 <script>
 export default {
-  name: 'Winner'
+  name: 'Winner',
+  computed: {
+    players () {
+      return this.$store.state.players
+    },
+    playerOn () {
+      return this.$store.state.player_on
+    }
+  }
 }
 </script>
 <style>
