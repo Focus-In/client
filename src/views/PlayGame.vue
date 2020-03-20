@@ -1,34 +1,47 @@
 <template>
 <div class="container">
     <div>
-        Hallo {{playerOn.username}}
+        <lottie-player
+            v-if="loading"
+            src="https://assets5.lottiefiles.com/packages/lf20_qidusS.json"
+            background="transparent"
+            speed="1"
+            style="width: 300px; height: 300px;"
+            loop
+            autoplay >
+        </lottie-player>
     </div>
-    <div v-if="questionList[indexQuestion]" class="play-board">
-        <div class="play-board-header">
-            <div class="score-user">
-                <span>Your score : {{players[playerOn.id - 1].score}}</span>
-            </div>
-            <div class="logo">
-                <img src="../assets//logo-text.png" alt="" class="logo-playgame">
-            </div>
-            <div class="score-user">
-                {{username_musuh}} : {{score_musuh}}
-            </div>
+    <div v-if="!loading">
+        <div>
+            Hallo {{playerOn.username}}
         </div>
-        <div class="play-board-body">
-            <div class="play-image">
-                <!-- <img :src="{{question.imgUrl}}" alt=""> -->
-                <img :src="questionList[indexQuestion].imgUrl" alt="" class="responsive">
-            </div>
-            <div class="play-board-button">
-                <div class="left">
-                <button @click.prevent="getAnswer('A', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="A"> A
-                </button>
+        <div v-if="questionList[indexQuestion]" class="play-board">
+            <div class="play-board-header">
+                <div class="score-user">
+                    <span>Your score : {{players[playerOn.id - 1].score}}</span>
                 </div>
-                <div class="right">
-                <button @click.prevent="getAnswer('B', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="B">
-                    B
-                </button>
+                <div class="logo">
+                    <img src="../assets//logo-text.png" alt="" class="logo-playgame">
+                </div>
+                <div class="score-user">
+                    {{username_musuh}} : {{score_musuh}}
+                </div>
+            </div>
+            <div class="play-board-body">
+                <div class="play-image">
+                    <!-- <img :src="{{question.imgUrl}}" alt=""> -->
+                    <img :src="questionList[indexQuestion].imgUrl" alt="" class="responsive">
+                </div>
+                <div class="play-board-button">
+                    <div class="left">
+                    <button @click.prevent="getAnswer('A', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="A"> A
+                    </button>
+                    </div>
+                    <div class="right">
+                    <button @click.prevent="getAnswer('B', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="B">
+                        B
+                    </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,7 +60,8 @@ export default {
   data () {
     return {
       score_musuh: 0,
-      username_musuh: ''
+      username_musuh: '',
+      loading: false
     }
   },
   methods: {
@@ -56,7 +70,10 @@ export default {
       console.log('total soal', this.questionList.length, this.indexQuestion)
       if (this.indexQuestion === this.questionList.length - 1) {
         console.log('pindah ke finish')
-        router.push('/Winner')
+        this.loading = true
+        setTimeout(() => {
+          router.push('/Winner')
+        }, 3000)
       }
 
       this.checkAnswer({ answer, questionNumber })
@@ -77,9 +94,6 @@ export default {
     }
   },
   created () {
-    // console.log(localStorage.id)
-    // console.log(localStorage.username)
-    // console.log(this.$store.state.player_on)
     socket.on('updateScoreNih', payload => {
       this.score_musuh = payload.score
       this.username_musuh = payload.username
