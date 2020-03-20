@@ -5,7 +5,7 @@
       <img src="../assets/logo-text.png" alt="">
       <p>play and test your FOCUS together with your friends</p>
       <form @submit.prevent='inputUser'>
-      <input type="text" class="form-control" v-model="username">
+      <input type="text" class="form-control" v-model="username" placeholder="Your Name">
       <br>
       <button type="submit" class="btn btn-info">Let's Go</button>
     </form>
