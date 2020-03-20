@@ -1,9 +1,9 @@
 <template>
 <div class="container">
-    <div v-for="(question, i) in questionList" :key="i" class="play-board">
+    <div v-for="(question) in questionList" :key="question.id" class="play-board">
         <div class="play-board-header">
             <div class="score-user">
-                Your Score: 10
+                <span>Your score : {{players[0].score}}</span>
             </div>
             <div class="logo">
                 <img src="../assets//logo-text.png" alt="" class="logo-playgame">

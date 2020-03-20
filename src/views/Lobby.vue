@@ -1,16 +1,16 @@
 <template>
-  <div class="lobby d-flex flex-column align-items-center">
+  <div class="lobby">
     <div class="overflow-auto receptionis">
       <div v-if="showNotif">
         {{notif_player_join}}
       </div>
-       <div>
-         {{players}}
+       <div v-for="(player, index) in players" :key="index">
+         {{players[index].username}}
        </div>
     </div>
     <div>
        <a @click="startOn">
-        <button>Start</button>
+        <button type="button" class="btn btn-info">Play Now</button>
        </a>
     </div>
   </div>
@@ -82,8 +82,15 @@ export default {
 
 <style scoped>
 
+.lobby{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
 .receptionis {
-  width: 30vw;
   height: 20vh;
   background-color: azure;
 }
