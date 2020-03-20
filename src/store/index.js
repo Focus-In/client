@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
 
 Vue.use(Vuex)
 
@@ -65,8 +67,11 @@ export default new Vuex.Store({
             // console.log('you got a point', state.players[0].username, state.players[0].score)
             console.log('you got a point', state.players[localStorage.id - 1].username, state.players[localStorage.id - 1].score)
           } else {
+            commit('SET_SCORE', { index: state.player_on.id - 1, status: false })
+            commit('SET_INDEX_QUESTION')
             console.log('you gotta need to be focus!')
           }
+          socket.emit('updateScore', state.players[state.player_on.id - 1])
         }
       }
     }

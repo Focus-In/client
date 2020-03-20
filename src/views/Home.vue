@@ -5,7 +5,7 @@
       <img src="../assets/logo-text.png" alt="">
       <p>play and test your FOCUS together with your friends</p>
       <form @submit.prevent='inputUser'>
-      <input type="text" class="form-control" v-model="username">
+      <input type="text" class="form-control" v-model="username" placeholder="Your Name">
       <br>
       <button type="submit" class="btn btn-info">Let's Go</button>
     </form>
@@ -40,8 +40,8 @@ export default {
     }
   },
   created () {
-    const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
-    audio.play()
+    // const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
+    // audio.play()
     socket.on('playerAdded', players => {
       this.$store.commit('SET_CHANGE_PLAYERS', players)
     })
