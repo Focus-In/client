@@ -3,7 +3,7 @@
     <div>
         Hallo {{playerOn.username}}
     </div>
-    <div v-for="(question) in questionList" :key="question.id" class="play-board">
+    <div v-if="questionList[indexQuestion]" class="play-board">
         <div class="play-board-header">
             <div class="score-user">
                 <span>Your score : {{players[playerOn.id - 1].score}}</span>
@@ -18,15 +18,15 @@
         <div class="play-board-body">
             <div class="play-image">
                 <!-- <img :src="{{question.imgUrl}}" alt=""> -->
-                <img :src="question.imgUrl" alt="" class="responsive">
+                <img :src="questionList[indexQuestion].imgUrl" alt="" class="responsive">
             </div>
             <div class="play-board-button">
                 <div class="left">
-                <button @click.prevent="getAnswer('A', question.id)" type="button" class="btn btn-dark" value="A"> A
+                <button @click.prevent="getAnswer('A', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="A"> A
                 </button>
                 </div>
                 <div class="right">
-                <button @click.prevent="getAnswer('B', question.id)" type="button" class="btn btn-dark" value="B">
+                <button @click.prevent="getAnswer('B', questionList[indexQuestion].id)" type="button" class="btn btn-dark" value="B">
                     B
                 </button>
                 </div>
@@ -40,10 +40,22 @@
 import { mapActions } from 'vuex'
 export default {
   name: 'PlayBoard',
+  data () {
+    return {
+      indexQuestion: 0
+    }
+  },
   methods: {
     ...mapActions(['checkAnswer']),
     getAnswer (answer, questionNumber) {
-    //   console.log('get answer', answer, questionNumber)
+      console.log('total soal', this.questionList.length, this.indexQuestion)
+      if (this.indexQuestion < this.questionList.length) {
+        this.indexQuestion++
+      }
+      if (this.indexQuestion === this.questionList.length) {
+        console.log('pindah ke finish')
+      }
+
       this.checkAnswer({ answer, questionNumber })
     }
   },
