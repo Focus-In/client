@@ -23,7 +23,9 @@ export default new Vuex.Store({
       { id: 9, imgUrl: 'https://i.imgur.com/JGlBVF6.png', answer: 'B' },
       { id: 10, imgUrl: 'https://i.imgur.com/XdeCJZd.png', answer: 'A' }
     ],
-    indexQuestion: 0
+    indexQuestion: 0,
+    playersFinish: 0,
+    playerHighScore: {}
   },
   mutations: {
     SET_INDEX_QUESTION (state) {
@@ -54,6 +56,12 @@ export default new Vuex.Store({
     },
     SET_PLAYER_ON (state, payload) {
       state.player_on = payload
+    },
+    SET_PLAYERS_FINISH (state, payload) {
+      state.playersFinish += payload
+    },
+    SET_PLAYER_HIGH_SCORE (state, payload) {
+      state.playerHighScore = payload
     }
   },
   actions: {
