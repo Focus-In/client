@@ -1,12 +1,19 @@
 <template>
   <div class="lobby">
-    <div class="overflow-auto receptionis">
-      <div v-if="showNotif">
+    <div class="lobby-header">
+    <img src="../assets/logo-text.png" alt="">
+    <h2>Waiting Room</h2>
+    <div v-if="showNotif">
         {{notif_player_join}}
       </div>
-       <div v-for="(player, index) in players" :key="index">
+    </div>
+    <div class="box-lobby">
+    <div class="receptionis">
+       <div v-for="(player, index) in players" :key="index" class="box-player">
+         <img src="../assets/user.png" alt="">
          {{players[index].username}}
        </div>
+    </div>
     </div>
     <div>
        <a @click="startOn">
@@ -91,9 +98,25 @@ export default {
   align-content: center;
 }
 
+.box-lobby{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .receptionis {
-  height: 20vh;
-  background-color: azure;
+  width: 30vw;
+  background-color: #17A2B8;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.box-player{
+  display: flex;
+  flex-direction: column;
+  color: black;
+  margin: 5px;
 }
 
 </style>
