@@ -1,11 +1,20 @@
 <template>
-  <div class="home">
-    <form @submit.prevent='inputUser'>
+<div class="container">
+  <div class="home container">
+    <div class="form-lobby">
+      <img src="../assets/logo-text.png" alt="">
+      <p>play and test your FOCUS together with your friends</p>
+      <form @submit.prevent='inputUser'>
       <input type="text" class="form-control" v-model="username">
       <br>
-      <button>Let's Go</button>
+      <button type="submit" class="btn btn-info">Let's Go</button>
     </form>
+    </div>
+    <div class="image-lobby">
+      <img src="../assets/landing.png" alt="">
+    </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -50,13 +59,24 @@ export default {
 </script>
 
 <style scoped>
-  .home {
-    background-color: blue;
-    width: 100vw;
-    height: 100vh;
+.home {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content:space-around;
     align-items: center;
+    align-content: center;
+    height: 100vh;
+  }
+  @media (max-width: 768px) {
+    .home {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* align-content: center; */
+  }
+
+  .image-lobby{
+    display: none;
+  }
   }
 </style>
