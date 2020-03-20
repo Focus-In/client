@@ -40,8 +40,8 @@ export default {
     }
   },
   created () {
-    const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
-    audio.play()
+    // const audio = new Audio('https://soundimage.org/wp-content/uploads/2014/08/Netherplace.mp3')
+    // audio.play()
     socket.on('playerAdded', players => {
       this.$store.commit('SET_CHANGE_PLAYERS', players)
     })

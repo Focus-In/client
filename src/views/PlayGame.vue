@@ -12,7 +12,7 @@
                 <img src="../assets//logo-text.png" alt="" class="logo-playgame">
             </div>
             <div class="score-user">
-                Another User Score: 0
+                {{username_musuh}} : {{score_musuh}}
             </div>
         </div>
         <div class="play-board-body">
@@ -38,8 +38,17 @@
 
 <script>
 import { mapActions } from 'vuex'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
+
 export default {
   name: 'PlayBoard',
+  data () {
+    return {
+      score_musuh: 0,
+      username_musuh: ''
+    }
+  },
   methods: {
     ...mapActions(['checkAnswer']),
     getAnswer (answer, questionNumber) {
@@ -62,6 +71,18 @@ export default {
     console.log(localStorage.id)
     console.log(localStorage.username)
     console.log(this.$store.state.player_on)
+    socket.on('updateScoreNih', payload => {
+      this.score_musuh = payload.score
+      this.username_musuh = payload.username
+    })
+  },
+  watch: {
+    score_musuh (val) {
+      this.score_musuh = val
+    },
+    username_musuh (val) {
+      this.username_musuh = val
+    }
   }
 }
 </script>
