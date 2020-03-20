@@ -55,21 +55,10 @@ export default {
     },
     startOn () {
       socket.emit('startOn')
-      this.fetchOnePlayer(localStorage.userId)
     },
     fetchOnePlayer (id) {
-      console.log(id, '?????????')
       const par = this.players
-      console.log(par, 'INI DI PLAY GAME AAA')
-      for (let i = 0; i < par.length; i++) {
-        console.log(par[i], 'PPPPPPPPPPPPPPP')
-        console.log(par[i].id, id, 'kkkkkkkkkkk')
-        if (par[i].id === +id) {
-          console.log(par[i], 'INI DI PLAY GAME')
-          this.$store.commit('SET_PLAYER_ON', par[i])
-          break
-        }
-      }
+      this.$store.commit('SET_PLAYER_ON', par.find(user => user.id === +id))
     }
   },
   created () {
@@ -81,6 +70,7 @@ export default {
       this.notify()
     })
     socket.on('movePlayGamePage', () => {
+      this.fetchOnePlayer(localStorage.id)
       this.$router.push('/playgame')
     })
   }
